@@ -42,6 +42,12 @@ def search_route(cmd):
     if trimmed_cmd == "yt":
         return redirect("https://youtube.com/results?search_query=" + remaining_cmd)
 
+    if trimmed_cmd == "duck":
+        return redirect("https://duckduckgo.com/?t=h_&q=" + remaining_cmd)
+
+    if trimmed_cmd == "bing":
+        return redirect("https://www.bing.com/search?q=" + remaining_cmd)
+
     
     return f"Command {cmd} not recognized."
 
