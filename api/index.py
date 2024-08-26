@@ -1,4 +1,6 @@
 from flask import Flask, redirect
+import re
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,12 +12,17 @@ def search_route(cmd):
     trimmed_cmd = cmd.split(' ')[0]
     print(f'You typed in {cmd}')
 
+    pattern = r'(?<=\S)%20(?=\S)'
+
+
+    cmd = re.sub(pattern, ' ', cmd)
+    
     parts = cmd.split(' ', 1)
     
     if len(parts) > 1:
-        remaining_cmd = parts[1]  # Get everything after the first word (tw)
+        remaining_cmd = parts[1]
     else:
-        remaining_cmd = ''  # If there's no "something else", it will be an empty string
+        remaining_cmd = ''
     
     print(f'You typed in {remaining_cmd}')
 
