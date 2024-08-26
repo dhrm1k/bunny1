@@ -9,15 +9,16 @@ def hello_world():
 
 @app.route('/search/<cmd>')
 def search_route(cmd):
-    trimmed_cmd = cmd.split(' ')[0]
-    print(f'You typed in {cmd}')
 
     pattern = r'(?<=\S)%20(?=\S)'
 
+    cmd_up = re.sub(pattern, ' ', cmd)
 
-    remaining_cmd = re.sub(pattern, ' ', cmd)
+    trimmed_cmd = cmd_up.split(' ')[0]
+    print(f'You typed in {trimmed_cmd}')
 
-    parts = cmd.split(' ', 1)
+
+    parts = cmd_up.split(' ', 1)
     
     if len(parts) > 1:
         remaining_cmd = parts[1]
@@ -25,7 +26,6 @@ def search_route(cmd):
         remaining_cmd = ''
     
     print(f'You typed in {remaining_cmd}')
-
 
     if trimmed_cmd == "tw":
         return redirect("https://x.com")
