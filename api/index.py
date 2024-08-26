@@ -15,8 +15,8 @@ def search_route(cmd):
     pattern = r'(?<=\S)%20(?=\S)'
 
 
-    cmd = re.sub(pattern, ' ', cmd)
-    
+    remaining_cmd = re.sub(pattern, ' ', cmd)
+
     parts = cmd.split(' ', 1)
     
     if len(parts) > 1:
